@@ -1,0 +1,43 @@
+---
+title: "Outlander TV series - basic statistics"
+author: "Claudia Słaboń"
+date: "4/8/2021"
+output: html_document
+---
+
+
+## Introduction
+
+Outlander is a television drama series based on the Outlander series of historical time travel novels by _Diana Gabaldon_. Developed by _Ronald D. Moore_ and produced by Sony Pictures Television and Left Bank Pictures for Starz, the show premiered on August 9, 2014. It stars _Caitriona Balfe_ as _Claire Randall_, a married former World War II nurse, later surgeon who in 1946 finds herself transported back to the Scotland of 1743, where she meets the dashing Highland warrior _Jamie Fraser_ _(Sam Heughan)_ and becomes embroiled in the Jacobite risings.
+
+
+![](https://upload.wikimedia.org/wikipedia/commons/3/3b/OutlanderLogo.png)
+
+
+
+## Season-to-season changes in mean viewership
+
+Below plot presents the changes in viewership across seasons starting from the 1st to the 5th.
+```{r, fig.width=5,fig.height=5, fig.align = 'center', echo=FALSE}
+library(ggplot2)
+
+df <- data.frame(season=c("1", "2", "3", "4", "5"),
+                views_mean=c(1.04, 1.09, 1.51, 1.07, 0.81))
+
+ggplot(data=df, aes(x=season, y=views_mean)) +
+  geom_line(aes(group=1), color = "blue")+
+  labs(title="Outlander changes in average viewership",x="Season", y = "Viewership [in mln]")
+
+
+```
+```{r, echo=FALSE}
+
+m_views <- max(df$views)
+l_views <- min(df$views)
+range <- max(df$views) - min(df$views)
+
+```
+
+## Conclusion
+
+The most popular season was season 3 (average viewership equals `r m_views` mln). The least popular was season 5 (average viewership equals `r l_views` mln). The difference between them equals `r range` mln views.
